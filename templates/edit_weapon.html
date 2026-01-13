@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Weapon</h2>
+<form method="POST">
+    <label>Name:</label><br><input type="text" name="name" value="{{ weapon.name }}" required><br><br>
+    <label>Type:</label><br><input type="text" name="type" value="{{ weapon.type }}" required><br><br>
+    <label>Manufacturer:</label><br><input type="text" name="manufacturer" value="{{ weapon.manufacturer }}" required><br><br>
+    <label>Year:</label><br><input type="number" name="year" value="{{ weapon.year }}" required><br><br>
+    <label>Status:</label><br>
+    <select name="status" required>
+        <option value="Available" {% if weapon.status=="Available" %}selected{% endif %}>Available</option>
+        <option value="Maintenance" {% if weapon.status=="Maintenance" %}selected{% endif %}>Maintenance</option>
+        <option value="Decommissioned" {% if weapon.status=="Decommissioned" %}selected{% endif %}>Decommissioned</option>
+    </select><br><br>
+    <button type="submit">Update Weapon</button>
+</form>
+{% endblock %}

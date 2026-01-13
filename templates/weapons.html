@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="add-button-container">
+    <a href="{{ url_for('add_weapon') }}">➕ Add New Weapon</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Manufacturer</th>
+            <th>Year</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for w in weapons %}
+        <tr>
+            <td>{{ w.id }}</td>
+            <td>{{ w.name }}</td>
+            <td>{{ w.type }}</td>
+            <td>{{ w.manufacturer }}</td>
+            <td>{{ w.year }}</td>
+            <td>{{ w.status }}</td>
+            <td>
+                <div class="action-buttons">
+                    <a href="{{ url_for('edit_weapon', id=w.id) }}" class="edit-btn">✏️ Edit</a>
+                    <form action="{{ url_for('delete_weapon', id=w.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this weapon?');" style="margin: 0;">
+                        <button type="submit">🗑️ Delete</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+```
